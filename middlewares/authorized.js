@@ -1,28 +1,18 @@
 import env from "dotenv";
-import helper from "../helpers/index.js";
-await env.config();
+env.config();
 export default async (req, res, next) => {
   try {
-    if (req.cookies && req.cookies.jwt) {
-      let token = req.cookies.jwt;
-      let payload;
-      if (token) {
-        let type = "CMS";
-        payload = await helper.verify(type, token);
-        if (!payload) {
-          res.redirect(`/signin?returnurl=${req.path}`);
+    if (req.cookies !== undefined && req.cookies.token !== undefined) {
+      let token = req.cookies.token;
+      if (token !== undefined) {
+        if (req.path === "/signin") {
+          res.redirect(`/dashboard`);
         } else {
-          if (payload.data.verify && payload.data.verify.success) {
-            if (req.path === "/signin") {
-              res.redirect(`/dashboard`);
-            } else {
-              next();
-            }
-          } else {
-            res.redirect(`/signin?returnurl=${req.path}`);
-          }
+          next();
         }
       }
+    } else {
+      res.redirect(`/signin?returnurl=${req.path}`);
     }
   } catch (e) {
     console.log(e);

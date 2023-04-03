@@ -84,7 +84,9 @@ $(document).ready(function () {
             $("#loader").hide();
             notify(result.error_description, "error");
           }
+          
           token = result.access_token;
+          console.log("token: ", token);
           let now = new Date();
           let time = now.getTime();
           let expireTime = time + 1000 * 60;

@@ -5,7 +5,7 @@ export default async (options) => {
   //url, type, gql, token for now
   try {
     let headers = {
-      "Accept-Encoding": "gzip, deflate",
+      "Accept-Encoding": "gzip, deflate, br",
     };
     if (options.headers) {
       Object.keys(options.headers).forEach((element) => {
@@ -23,7 +23,7 @@ export default async (options) => {
     });
     
     let result = await response.json();
-    console.log("api.result: ", result);
+    //console.log("api.result: ", result);
     return result;
   } catch (e) {
     console.log("api failed");
