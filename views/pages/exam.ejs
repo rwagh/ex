@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Conductor | Exam</title>
+	<%- include("../partials/head") %>
+</head>
+
+<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+	<div class="wrapper">
+		<div class="main">
+			<%- include("../partials/header") %>
+				<div class="container-fluid p-0" >
+					<div class="card" style="height: 87vh;">
+						<div class="card-header" id="qArea">
+							Head
+						</div>
+						<div class="card-body" id="oArea">
+							My Body
+						</div>
+						<div class="card-footer" id="nArea">
+							foot
+						</div>
+					</div>
+				</div>
+				<%- include("../partials/footer") %>
+		</div>
+		<%- include("../partials/foot") %>
+	</div>
+	<%- include("../partials/scripts") %>
+		<script src="/js/exam.js"></script>
+</body>
+
+</html>

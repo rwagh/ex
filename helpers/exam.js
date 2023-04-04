@@ -14,5 +14,15 @@ export default {
       input: JSON.stringify({}),
     });
   },
-  get: async () => {},
+  get: async (token, id) => {
+    let url = format(process.env.BASE_URL, process.env.EXAM);
+    return await api({
+      url,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      input: JSON.stringify({ EntityId: id }),
+    });
+  },
 };

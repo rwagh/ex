@@ -11,10 +11,33 @@ router.get("/dashboard", isAuthorized, async (req, res) => {
     console.log(e);
   }
 });
+
 router.post("/list", isAuthorized, async (req, res) => {
-  let token = req.cookies.token;
-  let result = await helper.exam.list(token);
-  res.json(result);
+  let list = [];
+  try {
+    let token = req.cookies.token;
+    let result = await helper.exam.list(token);
+    if(result.error === undefined){
+      list = result.Entities;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  res.json(list);
+});
+router.post("/get", isAuthorized, async (req, res) => {
+  let row = null;
+  try {
+    let token = req.cookies.token;
+    let id = req.body.id;
+    let result = await helper.exam.get(token,id);
+    if(result.error === undefined){
+      row = result.Entity;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  res.json(row);
 });
 
 export default router;
